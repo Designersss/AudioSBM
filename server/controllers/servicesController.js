@@ -7,7 +7,8 @@ class servicesController {
         return res.json(services)
     }
     async getAll(req, res) {
-
+        const services = await Services.findAll()
+        return res.json(services)
     }
     async getOne(req, res) {
 

@@ -19,7 +19,7 @@ const Track = sequelize.define('track', {
     price: {type: DataTypes.INTEGER},
     genre: {type: DataTypes.STRING},
     BPM: {type: DataTypes.STRING},
-    track: {type: DataTypes.STRING},
+    trackMp: {type: DataTypes.STRING},
 })
 
 const Album = sequelize.define('album', {
@@ -32,12 +32,7 @@ const Album = sequelize.define('album', {
 const Services = sequelize.define('services', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING},
-    price: {type: DataTypes.NUMBER}
-})
-
-const Comments = sequelize.define('comments', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    comments: {type: DataTypes.STRING},
+    price: {type: DataTypes.INTEGER}
 })
 
 User.hasMany(Track)
@@ -52,13 +47,9 @@ Album.belongsTo(User)
 Album.hasMany(Track)
 Track.belongsTo(Album)
 
-Track.hasMany(Comments)
-Comments.belongsTo(Track)
-
 module.exports = {
     User,
     Track,
     Album,
     Services,
-    Comments
 }
