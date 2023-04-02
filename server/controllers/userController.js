@@ -13,7 +13,7 @@ const generateJwt = (id, email, role) => {
 
 class UserController {
     async registration(req, res, next) {
-        const {email, password, role} = req.body
+        const {email, password, role, description, socialVk, socialTel} = req.body
         if (!email || !password) {
             return next(ApiError.badRequest('Неккоректные данные'))
         }
@@ -25,7 +25,7 @@ class UserController {
         const user = await User.create({email, role, password: hashPassword})
         const basket = await Basket.create({userId: user.id})
         const token = generateJwt(user.id, user.email, user.role)
-        return res.json({token})
+        return res.json({token, description, socialVk, socialTel})
     }
 
     async login(req, res, next) {
@@ -45,6 +45,21 @@ class UserController {
     async check(req, res, next) {
         const token = generateJwt(req.user.id, req.user.email, req.user.role)
         return res.json({token})
+    }
+
+    async getAll(req, res){
+        const user = await User.findAll()
+        return res.json(user)
+    }
+
+    async getOne(req, res){
+        const {id} = req.params
+        const user = await User.findOne(
+            {
+                where: {id}
+            }
+        )
+        return res.json(user)
     }
 }
 

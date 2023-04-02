@@ -2,7 +2,7 @@ const {Services} = require("../models/models");
 
 class servicesController {
     async create(req, res) {
-        const {name} = req.body
+        const {name, price} = req.body
         const services = await Services.create({name})
         return res.json(services)
     }
@@ -11,7 +11,11 @@ class servicesController {
         return res.json(services)
     }
     async getOne(req, res) {
-
+        const {id} = req.params
+        const services = await Services.findOne({
+            where: {id}
+        })
+        return services
     }
 }
 
