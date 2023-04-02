@@ -1,4 +1,4 @@
-const sequelize = require('../bd')
+const sequelize = require('../db')
 const {DataTypes} = require('sequelize')
 
 const User = sequelize.define('user', {
@@ -31,7 +31,8 @@ const Album = sequelize.define('album', {
 
 const Services = sequelize.define('services', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    price: {type: DataTypes.STRING}
+    name: {type: DataTypes.STRING},
+    price: {type: DataTypes.NUMBER}
 })
 
 const Comments = sequelize.define('comments', {
