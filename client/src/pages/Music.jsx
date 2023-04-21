@@ -125,33 +125,33 @@ const Music = () => {
                     </div>
                     <div className='grid grid-cols-4 mt-5 gap-4'>
                         <div>
-                            <button className='flex justify-between w-full bg-[#121212] rounded-lg items-center px-4 py-3.5'>
+                            <button className='flex justify-between w-full bg-[#121212] rounded-lg items-center px-4 py-3.5 transition hover:bg-[#1B1B1B]'>
                                 <p className='text-[#4E4E4E]'>Mp3</p>
                                 <span className='bg-[#181818] text-[#7B7B7B] rounded-lg p-2'>{musicOne.price}RUB</span>
                             </button>
-                            <button className='flex justify-between w-full bg-[#121212] rounded-lg items-center px-4 py-3.5 mt-2'>
+                            <button className='flex justify-between w-full bg-[#121212] rounded-lg items-center px-4 py-3.5 mt-2 transition hover:bg-[#1B1B1B]'>
                                 <p className='text-[#4E4E4E]'>WAV</p>
                                 <span className='bg-[#181818] text-[#7B7B7B] rounded-lg p-2'>{musicOne.price}RUB</span>
                             </button>
                         </div>
                         <div>
-                            <button className='justify-between w-full h-full bg-[#121212] rounded-lg items-center px-4 py-3.5'>
+                            <button className='justify-between w-full h-full bg-[#121212] rounded-lg items-center px-4 py-3.5 transition hover:bg-[#1B1B1B]'>
                                 <p className='text-[#4E4E4E]'>Коммерческий лизинг</p>
                                 <span className='flex justify-center bg-[#181818] text-[#7B7B7B] rounded-lg p-2 mt-5'>{musicOne.price}RUB</span>
                             </button>
                         </div>
                         <div>
-                            <button className='flex justify-between w-full bg-[#121212] rounded-lg items-center px-4 py-3.5'>
+                            <button className='flex justify-between w-full bg-[#121212] rounded-lg items-center px-4 py-3.5 transition hover:bg-[#1B1B1B]'>
                                 <p className='text-[#4E4E4E]'>Трекаут</p>
                                 <span className='bg-[#181818] text-[#7B7B7B] rounded-lg p-2'>{musicOne.price}RUB</span>
                             </button>
-                            <button className='flex justify-between w-full bg-[#121212] rounded-lg items-center px-4 py-3.5 mt-2'>
+                            <button className='flex justify-between w-full bg-[#121212] rounded-lg items-center px-4 py-3.5 mt-2 transition hover:bg-[#1B1B1B]'>
                                 <p className='text-[#4E4E4E]'>Премиум</p>
                                 <span className='bg-[#181818] text-[#7B7B7B] rounded-lg p-2'>{musicOne.price}RUB</span>
                             </button>
                         </div>
                         <div>
-                            <button className='justify-between w-full h-full bg-[#121212] rounded-lg items-center px-4 py-3.5'>
+                            <button className='justify-between w-full h-full bg-[#121212] rounded-lg items-center px-4 py-3.5 transition hover:bg-[#1B1B1B]'>
                                 <p className='text-[#4E4E4E]'>Перейти к покупке</p>
                             </button>
                         </div>
@@ -184,7 +184,7 @@ const Music = () => {
                     <span className='text-xl'>Рекомендации</span>
                     <div className='bg-[#1B1B1B] w-full h-0.5 ml-5' ></div>
                 </div>
-                <Recommendations music={music} text=''/>
+                <Recommendations numOne={0} NumTwo={10} music={music} text=''/>
             </div>
         </div>
     );

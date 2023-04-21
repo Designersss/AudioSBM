@@ -2,6 +2,8 @@ const ApiError = require('../error/ApiError')
 const bcrypt = require('bcrypt')
 const {User, Basket} = require('../models/models')
 const jwt = require('jsonwebtoken')
+const uuid = require("uuid");
+const path = require("path");
 
 const generateJwt = (id, email, role) => {
     return jwt.sign(
@@ -14,7 +16,10 @@ const generateJwt = (id, email, role) => {
 
 class UserController {
     async registration(req, res, next) {
-        const {email, password} = req.body
+        const {email, password, description, socialVk, socialTel, name} = req.body
+        const {img} = req.files
+        let fileNameOne = uuid.v4() + ".jpg"
+        img.mv(path.resolve(__dirname, '..', 'static', fileNameOne))
         if (!email || !password) {
             return next(ApiError.badRequest('Неккоректные данные'))
         }
@@ -23,7 +28,7 @@ class UserController {
             return next(ApiError.badRequest('Пользователь с таким Email уже существует'))
         }
         const hashPassword = await bcrypt.hash(password, 5)
-        const user = await User.create({email, password: hashPassword})
+        const user = await User.create({email, password: hashPassword, img: fileNameOne, description, socialVk, socialTel, name})
         const token = generateJwt(user.id, user.email, user.role)
         return res.json({token})
     }
@@ -45,6 +50,11 @@ class UserController {
     async check(req, res, next) {
         const token = generateJwt(req.user.id, req.user.email, req.user.role)
         return res.json({token})
+    }
+
+    async getAll(req, res, next) {
+        const users = await User.findAll()
+        return res.json(users)
     }
 }
 

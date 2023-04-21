@@ -8,7 +8,9 @@ export default class MusicStore {
     setMusic (music) {
         this._music = music
     }
+
     get music () {
         return this._music
     }
+
 }

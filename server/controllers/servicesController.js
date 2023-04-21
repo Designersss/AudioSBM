@@ -3,7 +3,7 @@ const {Services} = require("../models/models");
 class servicesController {
     async create(req, res) {
         const {name, price} = req.body
-        const services = await Services.create({name})
+        const services = await Services.create({name, price})
         return res.json(services)
     }
     async getAll(req, res) {

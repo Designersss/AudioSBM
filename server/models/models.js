@@ -4,6 +4,8 @@ const {DataTypes} = require('sequelize')
 const User = sequelize.define('user', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     email: {type: DataTypes.STRING, unique: true},
+    name: {type: DataTypes.STRING},
+    img: {type: DataTypes.STRING, allowNull: false},
     password: {type: DataTypes.STRING},
     description: {type: DataTypes.STRING},
     socialVk: {type: DataTypes.STRING},
@@ -14,11 +16,11 @@ const Track = sequelize.define('track', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING},
     artist: {type: DataTypes.STRING},
-    listens: {type: DataTypes.STRING},
+    listens: {type: DataTypes.INTEGER},
     img: {type: DataTypes.STRING, allowNull: false},
     price: {type: DataTypes.INTEGER},
     genre: {type: DataTypes.STRING},
-    BPM: {type: DataTypes.STRING},
+    BPM: {type: DataTypes.INTEGER},
     trackMp: {type: DataTypes.STRING},
 })
 
