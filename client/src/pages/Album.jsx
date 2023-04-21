@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Admin = () => {
+const Album = () => {
     return (
         <div className='container'>
-            Настройки
+            Альбомы
         </div>
     );
 };
 
-export default Admin;
+export default Album;

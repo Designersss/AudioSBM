@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {Context} from "../index";
 
 const AllMusic = () => {
+    const {music} = useContext(Context)
     return (
-        <div>
-            hello
+        <div className='container'>
+
         </div>
     );
 };

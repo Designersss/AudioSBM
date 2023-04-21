@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Admin = () => {
+const Genres = () => {
     return (
         <div className='container'>
-            Настройки
+            Жанры
         </div>
     );
 };
 
-export default Admin;
+export default Genres;
