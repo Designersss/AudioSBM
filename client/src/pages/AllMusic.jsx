@@ -13,7 +13,10 @@ const AllMusic = observer(() => {
     const {music} = useContext(Context)
     return (
         <div className='container'>
-            <h2 className='text-2xl mt-5'>Треки</h2>
+            <div className='flex items-center mt-8 mb-3'>
+                <span className='text-2xl'>Треки</span>
+                <div className='bg-[#1B1B1B] w-full h-0.5 ml-5' ></div>
+            </div>
             <div className='bg-[#0F0F0F] w-full rounded-2xl h-20 mt-5'>
                 <select name="Жанры" id="" className='text-black'>
                     <option className='text-black' value="All">Поиск по жанрам</option>

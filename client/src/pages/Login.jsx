@@ -13,12 +13,7 @@ const Login = observer (() => {
     const isLogin = location.pathname === LOGIN_ROUTER
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [desc, setDesc] = useState('')
-    const [img, setImg] = useState(null)
-    const clc = event => {
-        event.preventDefault()
-        console.log(1)
-    }
+    const [name, setName] = useState('')
     const click = async (e) => {
         e.preventDefault()
         try {
@@ -27,7 +22,7 @@ const Login = observer (() => {
                 data = await login(email, password)
                 console.log(data)
             } else {
-                data = await registration(email, password, desc, desc, img)
+                data = await registration(email, password, name)
                 console.log(data)
             }
             user.setUser(data)
@@ -38,8 +33,6 @@ const Login = observer (() => {
             alert(e.response.data.message)
         }
     }
-
-
     return (
         <div className='container'>
             <div className='flex justify-center items-center'>
@@ -56,6 +49,23 @@ const Login = observer (() => {
                                 onChange={e => setEmail(e.target.value)}
                             />
                         </div>
+                        {
+                            isLogin
+                                ?
+                                <div></div>
+                                :
+                                <div>
+                                    <span>Введите ваш никнейм</span>
+                                    <input
+                                        type="text"
+                                        placeholder='nickname'
+                                        className='w-full mt-2 mb-8 bg-[#1B1B1B] px-3 py-1 rounded-lg outline-0'
+                                        value={name}
+                                        onChange={e => setName(e.target.value)}
+                                    />
+                                </div>
+                        }
+
                         <div>
                             <span>Введите пароль</span>
                             <input

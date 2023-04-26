@@ -65,10 +65,9 @@ const Main = observer (() => {
                 </div>
                 <div className='flex grid grid-cols-5 gap-8'>
                     {user.usersAll.slice(0, 5).map(user =>
-                        <div key={user.id} className='block'>
-                            <img className='w-40 h-40 rounded-full' src={REACT_APP_API_URL + user.img} alt=""/>
-                            <div className='flex justify-center mt-5'>{user.name || 'NoName'}</div>
-                        </div>
+                        <Link to='/' key={user.id} className='flex w-full py-10 bg-[#121212] rounded-lg justify-center items-center transition hover:bg-[#1B1B1B] shadow-lg '>
+                            <div className='flex uppercase'>{user.name || 'NoName'}</div>
+                        </Link>
                     )}
                 </div>
             </div>

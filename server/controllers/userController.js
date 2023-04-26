@@ -25,11 +25,11 @@ class UserController {
             return next(ApiError.badRequest('Пользователь с таким Email уже существует'))
         }
         const hashPassword = await bcrypt.hash(password, 5)
-        const user = await User.create({email, password: hashPassword, img: 'http://localhost:5050/3088c381-0aaf-40cb-8ff8-cc8804855aa5.mp3', description, socialVk, socialTel, name})
+        const user = await User.create({email, password: hashPassword, img: img, description, socialVk, socialTel, name})
         const token = generateJwt(user.id, user.email)
         return res.json({token})
     }
-
+d
     async login(req, res, next) {
         const {email, password} = req.body
         const user = await User.findOne({where: {email}})
