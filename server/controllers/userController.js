@@ -13,7 +13,6 @@ const generateJwt = (id, email, role) => {
     )
 }
 
-
 class UserController {
     async registration(req, res, next) {
         const {email, password, description, socialVk, socialTel, name, img} = req.body
@@ -25,7 +24,7 @@ class UserController {
             return next(ApiError.badRequest('Пользователь с таким Email уже существует'))
         }
         const hashPassword = await bcrypt.hash(password, 5)
-        const user = await User.create({email, password: hashPassword, img: img, description, socialVk, socialTel, name})
+        const user = await User.create({email, password: hashPassword, img: '', description, socialVk, socialTel, name})
         const token = generateJwt(user.id, user.email)
         return res.json({token})
     }
@@ -40,17 +39,25 @@ d
         if(!comparePassword){
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        const token = generateJwt(user.id, user.email, user.role)
+        const token = generateJwt(user.id, user.email)
         return res.json({token})
     }
 
     async check(req, res, next) {
-        const token = generateJwt(req.user.id, req.user.email, req.user.role)
+        const token = generateJwt(req.user.id, req.user.email)
         return res.json({token})
     }
 
     async getAll(req, res, next) {
         const users = await User.findAll()
+        return res.json(users)
+    }
+
+    async getOne(req, res, next) {
+        const {id} = req.params
+        const users = await User.findOne({
+            where: {id}
+        })
         return res.json(users)
     }
 }

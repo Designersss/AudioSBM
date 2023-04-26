@@ -2,7 +2,7 @@ import React, {useContext, useEffect} from 'react';
 import {fetchAllUser} from "../https/userApi";
 import {fetchServicesAll} from "../https/servicesApi";
 import {Context} from "../index";
-import {REACT_APP_API_URL} from "../utils/const";
+import {PROD_ROUTER, REACT_APP_API_URL} from "../utils/const";
 import {observer} from "mobx-react-lite";
 import {Link} from "react-router-dom";
 
@@ -11,7 +11,6 @@ const Prod = observer(() => {
     useEffect(() => {
         fetchAllUser().then(users => user.setUsersAll(users))
     }, [])
-    console.log(user.usersAll)
     return (
         <div className='container'>
             <div className='flex items-center mt-8 mb-3'>
@@ -20,7 +19,7 @@ const Prod = observer(() => {
             </div>
             <div className='flex grid grid-cols-5 gap-8 mt-10'>
                 {user.usersAll.map(user =>
-                    <Link to='/' key={user.id} className='flex w-full py-10 bg-[#121212] rounded-lg justify-center items-center transition hover:bg-[#1B1B1B] shadow-lg'>
+                    <Link to={PROD_ROUTER + '/' + user.id} key={user.id} className='flex w-full py-10 bg-[#121212] rounded-lg justify-center items-center transition hover:bg-[#1B1B1B] shadow-lg'>
                         <div className='flex uppercase'>{user.name || 'NoName'}</div>
                     </Link>
                 )}

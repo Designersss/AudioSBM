@@ -15,6 +15,7 @@ import Album from "../pages/Album";
 import Prod from "../pages/Prod";
 import Genres from "../pages/Genres";
 import Login from "../pages/Login";
+import User from "../pages/User";
 
 export const publicRoutes = [
     {
@@ -43,6 +44,10 @@ export const authRoutes = [
     {
         path: MUSIC_ROUTER + '/:id',
         Component: Music
+    },
+    {
+        path: PROD_ROUTER + '/:id',
+        Component: User
     },
     {
         path: ALL_MUSIC_ROUTER_GENRES + '/:genre',

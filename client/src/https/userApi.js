@@ -8,7 +8,7 @@ export const registration = async (email, password, name, img) => {
     return jwtDecode(data.token)
 }
 
-export const login = async (email, password, description, socialVk, socialTel, img) => {
+export const login = async (email, password) => {
     const {data} = await $host.post('api/user/login', {email, password})
     localStorage.setItem('token', data.token)
     return jwtDecode(data.token)
@@ -22,5 +22,10 @@ export const check = async () => {
 
 export const fetchAllUser = async () => {
     const {data} = await $host.get('api/user')
+    return data
+}
+
+export const fetchOneUser = async (id) => {
+    const {data} = await $host.get('api/user/' + id)
     return data
 }
