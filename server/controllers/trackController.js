@@ -13,7 +13,6 @@ class trackController {
             img.mv(path.resolve(__dirname, '..', 'static', fileNameOne))
             trackMp.mv(path.resolve(__dirname, '..', 'tracksFile', trackName))
             const track = await Track.create({name, artist, listens, price, genre, BPM,  img: fileNameOne, trackMp: trackName})
-
             return res.json(track)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -24,11 +23,22 @@ class trackController {
         const track = await Track.findAll()
         return res.json(track)
     }
+
     async getOne(req, res) {
         const {id} = req.params
         const track = await Track.findOne(
             {
                 where: {id}
+            }
+        )
+        return res.json(track)
+    }
+
+    async getGenres(req, res) {
+        const {genre} = req.params
+        const track = await Track.findAll(
+            {
+                where: {genre}
             }
         )
         return res.json(track)

@@ -2,8 +2,9 @@ import React, {useContext} from 'react';
 import {Link, Route, Routes} from "react-router-dom";
 import {authRoutes, publicRoutes} from "./routes";
 import {Context} from "../index";
+import {observer} from "mobx-react-lite";
 
-const Router = () => {
+const Router = observer(() => {
     const {music} = useContext(Context)
     const {user} = useContext(Context)
     return (
@@ -16,6 +17,6 @@ const Router = () => {
             )}
         </Routes>
     );
-};
+});
 
 export default Router;

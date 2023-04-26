@@ -6,16 +6,14 @@ import MusicOne from "./MusicOne";
 
 const Recommendations = observer (({text, music, numOne, NumTwo}) => {
     useEffect(() => {
-        fetchMusic().then(data => {
-            music.setMusic(data)
-        })
+        fetchMusic().then(data => music.setMusic(data))
     }, [])
     const navigate = useNavigate()
     return (
         <div>
             <h2>{text}</h2>
             <div className='grid grid-cols-5 gap-5'>
-                {music.music.slice(numOne, NumTwo).map(music =>
+                {music.music.slice(3, 13).map(music =>
                     <div key={music.id}>
                         <MusicOne music={music} />
                     </div>

@@ -1,20 +1,73 @@
-import React from 'react';
-import {Link, useLocation} from "react-router-dom";
-import {LOGIN_ROUTER, REGISTRATION_ROUTER} from "../utils/const";
+import React, {useContext, useState} from 'react';
+import {Link, useLocation, useNavigate} from "react-router-dom";
+import {LOGIN_ROUTER, MAIN_ROUTER, REGISTRATION_ROUTER} from "../utils/const";
+import {login, registration} from "../https/userApi";
+import {Context} from "../index";
+import {observer} from "mobx-react-lite";
+import {all} from "axios";
 
-const Login = () => {
+const Login = observer (() => {
+    const {user} = useContext(Context)
     const location = useLocation()
+    const history = useNavigate()
     const isLogin = location.pathname === LOGIN_ROUTER
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [desc, setDesc] = useState('')
+    const [img, setImg] = useState(null)
+    const clc = event => {
+        event.preventDefault()
+        console.log(1)
+    }
+    const click = async (e) => {
+        e.preventDefault()
+        try {
+            let data
+            if (isLogin) {
+                data = await login(email, password)
+                console.log(data)
+            } else {
+                data = await registration(email, password, desc, desc, img)
+                console.log(data)
+            }
+            user.setUser(data)
+            user.setIsAuth(true)
+            history(MAIN_ROUTER)
+            console.log(user.user + 'asd' + user.isAuth)
+        } catch (e) {
+            alert(e.response.data.message)
+        }
+    }
+
+
     return (
         <div className='container'>
             <div className='flex justify-center items-center'>
                 <form className='mt-64 w-80 p-4 bg-[#0F0F0F] rounded-lg' action="">
                     <h3 className='flex text-[#484848] justify-center pb-10 text-lg'>{isLogin ? 'ВХОД' : 'РЕГИСТРАЦИЯ'}</h3>
                     <div className='justify-between items-center'>
-                        <span>Введите адресс эл.почты</span>
-                        <input type="text" placeholder='@pochta.com' className='w-full mt-2 mb-8 bg-[#1B1B1B] px-3 py-1 rounded-lg outline-0'/>
+                        <div>
+                            <span>Введите адресс эл.почты</span>
+                            <input
+                                type="text"
+                                placeholder='@pochta.com'
+                                className='w-full mt-2 mb-8 bg-[#1B1B1B] px-3 py-1 rounded-lg outline-0'
+                                value={email}
+                                onChange={e => setEmail(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <span>Введите пароль</span>
+                            <input
+                                type='text'
+                                placeholder='1234'
+                                className='w-full mt-2 mb-8 bg-[#1B1B1B] px-3 py-1 rounded-lg outline-0'
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
+                            />
+                        </div>
                     </div>
-                    <button className='bg-[#0057BA] py-1 rounded-lg w-full'>Продолжить</button>
+                    <button className='bg-[#0057BA] py-1 rounded-lg w-full' onClick={click}>Продолжить</button>
                     <hr className='my-4'/>
                     <div>
                         {isLogin
@@ -29,6 +82,6 @@ const Login = () => {
             </div>
         </div>
     );
-};
+});
 
 export default Login;

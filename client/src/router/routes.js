@@ -1,7 +1,7 @@
 import {
     ADMIN_ROUTER,
     ALBUM_ROUTER,
-    ALL_MUSIC_ROUTER, ERROR,
+    ALL_MUSIC_ROUTER, ALL_MUSIC_ROUTER_GENRES, ERROR,
     GENRES_ROUTER, LOGIN_ROUTER,
     MAIN_ROUTER,
     MUSIC_ROUTER,
@@ -43,6 +43,10 @@ export const authRoutes = [
     {
         path: MUSIC_ROUTER + '/:id',
         Component: Music
+    },
+    {
+        path: ALL_MUSIC_ROUTER_GENRES + '/:genre',
+        Component: AllMusic
     },
     {
         path: ALL_MUSIC_ROUTER,

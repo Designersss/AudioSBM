@@ -6,14 +6,17 @@ export const createMusic = async (music) => {
     return data
 }
 
-export const fetchMusic = async (page, limit = 5) => {
-    const {data} = await $host.get('api/track', {params: {
-            page, limit
-        }})
+export const fetchMusic = async () => {
+    const {data} = await $host.get('api/track')
     return data
 }
 
 export const fetchOneMusic = async (id) => {
     const {data} = await $host.get('api/track/' + id)
+    return data
+}
+
+export const fetchOneMusicGenre = async (genre) => {
+    const {data} = await $host.get('api/track/genre/' + genre)
     return data
 }

@@ -5,7 +5,7 @@ const User = sequelize.define('user', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     email: {type: DataTypes.STRING, unique: true},
     name: {type: DataTypes.STRING},
-    img: {type: DataTypes.STRING, allowNull: false},
+    img: {type: DataTypes.STRING},
     password: {type: DataTypes.STRING},
     description: {type: DataTypes.STRING},
     socialVk: {type: DataTypes.STRING},
@@ -15,7 +15,7 @@ const User = sequelize.define('user', {
 const Track = sequelize.define('track', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING},
-    artist: {type: DataTypes.STRING},
+    artist: {type: DataTypes.INTEGER},
     listens: {type: DataTypes.INTEGER},
     img: {type: DataTypes.STRING, allowNull: false},
     price: {type: DataTypes.INTEGER},
@@ -26,6 +26,7 @@ const Track = sequelize.define('track', {
 
 const Album = sequelize.define('album', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    artist: {type: DataTypes.INTEGER},
     name: {type: DataTypes.STRING},
     img: {type: DataTypes.STRING, allowNull: false},
     track: {type: DataTypes.STRING},
@@ -33,6 +34,7 @@ const Album = sequelize.define('album', {
 
 const Services = sequelize.define('services', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    artist: {type: DataTypes.INTEGER},
     name: {type: DataTypes.STRING},
     price: {type: DataTypes.INTEGER}
 })

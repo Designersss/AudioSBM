@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import '../../styles/player.scss'
 import useSound from "use-sound";
 import {observer} from "mobx-react-lite";
+import imgs from '../../img/main/sad music 1.png'
 const Player = observer (({img, name, music}) => {
     // const music = {id: 1, name: 'AUDIO', artist: 'Walmery', listens: '0', price: 1000, genre: 'Dabstep', BPM: '100', trackMp: 'http://localhost:5050/3088c381-0aaf-40cb-8ff8-cc8804855aa5.mp3', img: 'http://localhost:5050/f7dd95b2-7ba0-43a7-a8b3-412ef419f707.jpg'}
     const [isPlaying, setIsPlaying] = useState(false);
@@ -45,7 +46,7 @@ const Player = observer (({img, name, music}) => {
     return (
         <div className='flex items-center'>
             <div>
-                <img className='w-10 h-10 py-2 rounded-lg' src={img || 'http://localhost:5050/f7dd95b2-7ba0-43a7-a8b3-412ef419f707.jpg'} alt=""/>
+                <img className='w-10 h-10 py-2 rounded-lg' src={imgs} alt=""/>
             </div>
             <div className='flex items-center'>
                 <button className='ml-3'>
