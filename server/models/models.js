@@ -1,5 +1,5 @@
 const sequelize = require('../db')
-const {DataTypes} = require('sequelize')
+const {DataTypes, Sequelize} = require('sequelize')
 
 const User = sequelize.define('user', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
@@ -8,6 +8,7 @@ const User = sequelize.define('user', {
     img: {type: DataTypes.STRING},
     password: {type: DataTypes.STRING},
     description: {type: DataTypes.STRING},
+    modelTrack: {type: DataTypes.ARRAY(DataTypes.JSON)},
     socialVk: {type: DataTypes.STRING},
     socialTel: {type: DataTypes.STRING},
 })

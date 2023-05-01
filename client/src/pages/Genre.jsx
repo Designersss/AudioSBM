@@ -10,7 +10,6 @@ const Genre = observer(({music}) => {
     useEffect(() => {
         fetchOneMusicGenre(genre).then(data => music.setMusic(data))
     }, [])
-
     console.log(genre)
     return (
         <div className='grid grid-cols-5 gap-5'>

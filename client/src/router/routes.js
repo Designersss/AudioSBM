@@ -42,18 +42,6 @@ export const authRoutes = [
         Component: Main
     },
     {
-        path: MUSIC_ROUTER + '/:id',
-        Component: Music
-    },
-    {
-        path: PROD_ROUTER + '/:id',
-        Component: User
-    },
-    {
-        path: ALL_MUSIC_ROUTER_GENRES + '/:genre',
-        Component: AllMusic
-    },
-    {
         path: ALL_MUSIC_ROUTER,
         Component: AllMusic
     },
@@ -76,5 +64,17 @@ export const authRoutes = [
     {
         path: LOGIN_ROUTER,
         Component: Login
+    },
+    {
+        path: MUSIC_ROUTER + '/:id',
+        Component: Music
+    },
+    {
+        path: PROD_ROUTER + '/:id',
+        Component: User
+    },
+    {
+        path: ALL_MUSIC_ROUTER_GENRES + '/:genre',
+        Component: AllMusic
     },
 ]

@@ -10,16 +10,8 @@ export default class MusicStore {
         this._music = music
     }
 
-    setMusicGenres (musicGenres) {
-        this._musicGenres = musicGenres
-    }
-
     get music () {
         return this._music
-    }
-
-    get musicGenres () {
-        return this._musicGenres
     }
 
 }

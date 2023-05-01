@@ -2,15 +2,11 @@ import React, {useContext, useEffect, useState} from 'react';
 import '../../styles/navBarStyle.scss'
 import {Link} from "react-router-dom";
 import {MAIN_ROUTER, PROD_ROUTER} from "../../utils/const";
-import Player from "../player/Player";
 import {observer} from "mobx-react-lite";
 import {Context} from "../../index";
-import {fetchOneMusic} from "../../https/musicApi";
-import {fetchIUser} from "../../https/userApi";
 
 const NavBar = observer(() => {
     const {user} = useContext(Context)
-    console.log(user.user.id)
     return (
         <div className='nav-bar'>
             <div className='container'>

@@ -24,6 +24,14 @@ class trackController {
         return res.json(track)
     }
 
+    async getAllUser(req, res) {
+        const {artist} = req.params
+        const track = await Track.findAll({
+            where: {artist}
+        })
+        return res.json(track)
+    }
+
     async getOne(req, res) {
         const {id} = req.params
         const track = await Track.findOne(
