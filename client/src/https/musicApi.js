@@ -21,7 +21,12 @@ export const fetchOneMusicGenre = async (genre) => {
     return data
 }
 
-export const fetchOneMusicId = async (artist) => {
-    const {data} = await $host.get('api/track/prod/' + artist)
+export const fetchOneMusicId = async (artistId) => {
+    const {data} = await $host.get('api/track/prod/' + artistId)
+    return data
+}
+
+export const deletedTrack = async (id) => {
+    const {data} = await $host.get('api/track/del/' + id)
     return data
 }

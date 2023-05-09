@@ -5,14 +5,14 @@ const ApiError = require('../error/ApiError')
 class trackController {
     async create(req, res, next) {
         try{
-            const {name, artist, listens, price, genre, BPM} = req.body
+            const {name, artistId, listens, priceMp3, priceWav, priceOut, pricePremium, priceLeasing, genre, BPM} = req.body
             const {img} = req.files
-            const {trackMp} = req.files
+            const {trackMp3} = req.files
             let fileNameOne = uuid.v4() + ".jpg"
             let trackName = uuid.v4() + ".mp3"
             img.mv(path.resolve(__dirname, '..', 'static', fileNameOne))
-            trackMp.mv(path.resolve(__dirname, '..', 'tracksFile', trackName))
-            const track = await Track.create({name, artist, listens, price, genre, BPM,  img: fileNameOne, trackMp: trackName})
+            trackMp3.mv(path.resolve(__dirname, '..', 'tracksFile', trackName))
+            const track = await Track.create({name, artistId, listens, priceMp3, priceWav, priceOut, pricePremium, priceLeasing, genre, BPM,  img: fileNameOne, trackMp3: trackName})
             return res.json(track)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -25,9 +25,9 @@ class trackController {
     }
 
     async getAllUser(req, res) {
-        const {artist} = req.params
+        const {artistId} = req.params
         const track = await Track.findAll({
-            where: {artist}
+            where: {artistId}
         })
         return res.json(track)
     }
@@ -47,6 +47,16 @@ class trackController {
         const track = await Track.findAll(
             {
                 where: {genre}
+            }
+        )
+        return res.json(track)
+    }
+
+    async deletedTrack(req, res) {
+        const {id} = req.params
+        const track = await Track.destroy(
+            {
+                where: {id}
             }
         )
         return res.json(track)

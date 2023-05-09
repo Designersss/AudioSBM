@@ -14,13 +14,15 @@ const Prod = observer(() => {
     return (
         <div className='container'>
             <div className='flex items-center mt-8 mb-3'>
-                <span className='text-2xl'>Продюссеры</span>
-                <div className='bg-[#1B1B1B] w-full h-0.5 ml-5' ></div>
+                <span className='text-xl'>Продюссеры</span>
+                <div className='bg-[#1B1B1B] w-full h-0.5 ml-5'></div>
             </div>
-            <div className='flex grid grid-cols-5 gap-8 mt-10'>
+            <div className='flex grid grid-cols-6 gap-x-6 gap-y-8 mt-10'>
                 {user.usersAll.map(user =>
-                    <Link to={PROD_ROUTER + '/' + user.id} key={user.id} className='flex w-full py-10 bg-[#121212] rounded-lg justify-center items-center transition hover:bg-[#1B1B1B] shadow-lg'>
-                        <div className='flex uppercase'>{user.name || 'NoName'}</div>
+                    <Link to={PROD_ROUTER + '/' + user.id} key={user.id}
+                          className='w-full py-4 justify-center transition bg-[#121212] rounded-lg'>
+                        <img className='flex w-24 h-24 rounded-full m-auto' src={REACT_APP_API_URL + user.img} alt=""/>
+                        <div className='flex uppercase justify-center mt-6 text-center'>{user.name || 'NoName'}</div>
                     </Link>
                 )}
             </div>

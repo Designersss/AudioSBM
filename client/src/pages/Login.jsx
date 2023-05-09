@@ -4,7 +4,6 @@ import {LOGIN_ROUTER, MAIN_ROUTER, REGISTRATION_ROUTER} from "../utils/const";
 import {login, registration} from "../https/userApi";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
-import {all} from "axios";
 
 const Login = observer (() => {
     const {user} = useContext(Context)
@@ -14,6 +13,28 @@ const Login = observer (() => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [name, setName] = useState('')
+    const [imgUser, setImgUser] = useState(null)
+    const [qwe, setQwe] = useState(false)
+    const fileUpImg = e => {
+        setImgUser(e.target.files[0])
+    }
+    const clk = async e  => {
+        e.preventDefault()
+        try {
+            let data = new FormData()
+            data.append('email', email)
+            data.append('password', password)
+            data.append('name', name)
+            data.append('img', imgUser)
+            registration(data).then(us => setQwe(true))
+            user.setUser(data)
+            user.setIsAuth(true)
+            history(MAIN_ROUTER)
+            console.log(user.user + 'asd' + user.isAuth)
+        } catch (e) {
+            alert(e.response.data.message)
+        }
+    }
     const click = async (e) => {
         e.preventDefault()
         try {
@@ -22,8 +43,12 @@ const Login = observer (() => {
                 data = await login(email, password)
                 console.log(data)
             } else {
-                data = await registration(email, password, name)
-                console.log(data)
+                let reg = new FormData()
+                reg.append('email', email)
+                reg.append('password', password)
+                reg.append('name', name)
+                reg.append('img', imgUser)
+                data = await registration(reg)
             }
             user.setUser(data)
             user.setIsAuth(true)
@@ -40,7 +65,7 @@ const Login = observer (() => {
                     <h3 className='flex text-[#484848] justify-center pb-10 text-lg'>{isLogin ? 'ВХОД' : 'РЕГИСТРАЦИЯ'}</h3>
                     <div className='justify-between items-center'>
                         <div>
-                            <span>Введите адресс эл.почты</span>
+                            <span>Введите адресс эл.почты *</span>
                             <input
                                 type="text"
                                 placeholder='@pochta.com'
@@ -55,7 +80,7 @@ const Login = observer (() => {
                                 <div></div>
                                 :
                                 <div>
-                                    <span>Введите ваш никнейм</span>
+                                    <span>Введите ваш никнейм *</span>
                                     <input
                                         type="text"
                                         placeholder='nickname'
@@ -65,9 +90,22 @@ const Login = observer (() => {
                                     />
                                 </div>
                         }
-
-                        <div>
-                            <span>Введите пароль</span>
+                        {
+                            isLogin
+                                ?
+                                <div></div>
+                                :
+                                <div className='-mt-2'>
+                                    <span>Добавьте фото профиля *</span>
+                                    <label htmlFor="photo"
+                                           className="flex justify-center rounded-lg cursor-pointer py-1 bg-[#0057BA] w-full mt-2">
+                                        <p>Загрузить</p>
+                                        <input name="file" id="photo" multiple type="file" className="hidden" onChange={fileUpImg}/>
+                                    </label>
+                                </div>
+                        }
+                        <div className='mt-4'>
+                            <span>Введите пароль *</span>
                             <input
                                 type='text'
                                 placeholder='1234'
@@ -77,7 +115,12 @@ const Login = observer (() => {
                             />
                         </div>
                     </div>
-                    <button className='bg-[#0057BA] py-1 rounded-lg w-full' onClick={click}>Продолжить</button>
+                    {isLogin
+                        ?
+                        <button className='bg-[#0057BA] py-1 rounded-lg w-full' onClick={click}>Продолжить</button>
+                        :
+                        <button className='bg-[#0057BA] py-1 rounded-lg w-full' onClick={click}>Рег</button>
+                    }
                     <hr className='my-4'/>
                     <div>
                         {isLogin

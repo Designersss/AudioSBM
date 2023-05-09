@@ -1,9 +1,14 @@
 const {Services} = require("../models/models");
+const uuid = require("uuid");
+const path = require("path");
 
 class servicesController {
     async create(req, res) {
-        const {name, price} = req.body
-        const services = await Services.create({name, price})
+        const {name, price, artistId} = req.body
+        const {img} = req.files
+        let fileNameOne = uuid.v4() + ".jpg"
+        img.mv(path.resolve(__dirname, '..', 'staticServices', fileNameOne))
+        const services = await Services.create({name, price, img: fileNameOne, artistId})
         return res.json(services)
     }
     async getAll(req, res) {
@@ -11,11 +16,11 @@ class servicesController {
         return res.json(services)
     }
     async getOne(req, res) {
-        const {id} = req.params
-        const services = await Services.findOne({
-            where: {id}
+        const {artistId} = req.params
+        const services = await Services.findAll({
+            where: {artistId}
         })
-        return services
+        return res.json(services)
     }
 }
 

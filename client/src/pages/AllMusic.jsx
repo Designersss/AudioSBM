@@ -11,12 +11,11 @@ const AllMusic = observer(() => {
     const navigate = useNavigate()
     const location = useLocation()
     const [genre, setGenre] = useState('')
-    console.log(genre)
     const {music} = useContext(Context)
     return (
         <div className='container'>
             <div className='flex items-center mt-8 mb-3'>
-                <span className='text-2xl'>Треки</span>
+                <span className='text-xl'>Треки</span>
                 <div className='bg-[#1B1B1B] w-full h-0.5 ml-5' ></div>
             </div>
             <div className='flex bg-[#0F0F0F] w-96 px-6 rounded-2xl h-20 p-5 mt-5 justify-between'>
@@ -51,7 +50,6 @@ const AllMusic = observer(() => {
                         <MusicPagesAll music={music} text={''} />
                     </div>
                 }
-
             </div>
         </div>
     );

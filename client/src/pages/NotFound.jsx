@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProdAll = ({user}) => {
+const NotFound = () => {
     return (
         <div>
 
@@ -8,4 +8,4 @@ const ProdAll = ({user}) => {
     );
 };
 
-export default ProdAll;
+export default NotFound;

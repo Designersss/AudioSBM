@@ -1,4 +1,6 @@
 import {
+    ADD_ALBUM,
+    ADD_BEATS, ADD_SERVICE,
     ADMIN_ROUTER,
     ALBUM_ROUTER,
     ALL_MUSIC_ROUTER, ALL_MUSIC_ROUTER_GENRES, ERROR,
@@ -16,6 +18,9 @@ import Prod from "../pages/Prod";
 import Genres from "../pages/Genres";
 import Login from "../pages/Login";
 import User from "../pages/User";
+import AddBeats from "../pages/AddBeats";
+import AddService from "../pages/AddService";
+import AddAlbum from "../pages/AddAlbum";
 
 export const publicRoutes = [
     {
@@ -76,5 +81,17 @@ export const authRoutes = [
     {
         path: ALL_MUSIC_ROUTER_GENRES + '/:genre',
         Component: AllMusic
+    },
+    {
+        path: ADD_BEATS,
+        Component: AddBeats
+    },
+    {
+        path: ADD_SERVICE,
+        Component: AddService
+    },
+    {
+        path: ADD_ALBUM,
+        Component: AddAlbum
     },
 ]

@@ -5,29 +5,34 @@ const User = sequelize.define('user', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     email: {type: DataTypes.STRING, unique: true},
     name: {type: DataTypes.STRING},
-    img: {type: DataTypes.STRING},
+    img: {type: DataTypes.STRING, allowNull: false},
     password: {type: DataTypes.STRING},
     description: {type: DataTypes.STRING},
-    modelTrack: {type: DataTypes.ARRAY(DataTypes.JSON)},
     socialVk: {type: DataTypes.STRING},
-    socialTel: {type: DataTypes.STRING},
+    socialTelegram: {type: DataTypes.STRING},
+    socialYoutube: {type: DataTypes.STRING},
+    socialTwitch: {type: DataTypes.STRING},
 })
 
 const Track = sequelize.define('track', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING},
-    artist: {type: DataTypes.INTEGER},
+    artistId: {type: DataTypes.INTEGER},
     listens: {type: DataTypes.INTEGER},
     img: {type: DataTypes.STRING, allowNull: false},
-    price: {type: DataTypes.INTEGER},
+    priceMp3: {type: DataTypes.INTEGER},
+    priceWav: {type: DataTypes.INTEGER},
+    priceOut: {type: DataTypes.INTEGER},
+    pricePremium: {type: DataTypes.INTEGER},
+    priceLeasing: {type: DataTypes.INTEGER},
     genre: {type: DataTypes.STRING},
     BPM: {type: DataTypes.INTEGER},
-    trackMp: {type: DataTypes.STRING},
+    trackMp3: {type: DataTypes.STRING},
 })
 
 const Album = sequelize.define('album', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    artist: {type: DataTypes.INTEGER},
+    artistId: {type: DataTypes.INTEGER},
     name: {type: DataTypes.STRING},
     img: {type: DataTypes.STRING, allowNull: false},
     track: {type: DataTypes.STRING},
@@ -35,7 +40,8 @@ const Album = sequelize.define('album', {
 
 const Services = sequelize.define('services', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    artist: {type: DataTypes.INTEGER},
+    artistId: {type: DataTypes.INTEGER},
+    img: {type: DataTypes.STRING, allowNull: false},
     name: {type: DataTypes.STRING},
     price: {type: DataTypes.INTEGER}
 })

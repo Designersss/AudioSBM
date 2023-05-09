@@ -15,7 +15,10 @@ const generateJwt = (id, email, role) => {
 
 class UserController {
     async registration(req, res, next) {
-        const {email, password, description, socialVk, socialTel, name, img} = req.body
+        const {email, password, description, socialVk, socialTel, name} = req.body
+        const {img} = req.files
+        let fileNameOne = uuid.v4() + ".jpg"
+        img.mv(path.resolve(__dirname, '..', 'staticUsers', fileNameOne))
         if (!email || !password) {
             return next(ApiError.badRequest('Неккоректные данные'))
         }
@@ -24,7 +27,7 @@ class UserController {
             return next(ApiError.badRequest('Пользователь с таким Email уже существует'))
         }
         const hashPassword = await bcrypt.hash(password, 5)
-        const user = await User.create({email, password: hashPassword, img: '', description, socialVk, socialTel, name})
+        const user = await User.create({email, password: hashPassword, img: fileNameOne, description, socialVk, socialTel, name})
         const token = generateJwt(user.id, user.email)
         return res.json({token})
     }
@@ -44,7 +47,7 @@ d
     }
 
     async check(req, res, next) {
-        const token = generateJwt(req.user.id, req.user.email)
+        const token = generateJwt(req.user.id, req.user.email, req.user.name)
         return res.json({token})
     }
 
@@ -60,6 +63,7 @@ d
         })
         return res.json(users)
     }
+
 }
 
 module.exports = new UserController()

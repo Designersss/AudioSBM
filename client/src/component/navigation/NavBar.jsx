@@ -1,9 +1,12 @@
 import React, {useContext, useEffect, useState} from 'react';
 import '../../styles/navBarStyle.scss'
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {MAIN_ROUTER, PROD_ROUTER} from "../../utils/const";
 import {observer} from "mobx-react-lite";
 import {Context} from "../../index";
+import {fetchOneUser} from "../../https/userApi";
+import {fetchMusic} from "../../https/musicApi";
+import User from "../../pages/User";
 
 const NavBar = observer(() => {
     const {user} = useContext(Context)
@@ -24,7 +27,7 @@ const NavBar = observer(() => {
                     </Link>
                     <Link to={PROD_ROUTER + '/' + user.user.id}>
                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_482_272)">
+                            <g clipPath="url(#clip0_482_272)">
                                 <path
                                     d="M20 0C9 0 0 9 0 20C0 31 9 40 20 40C31 40 40 31 40 20C40 9 31 0 20 0ZM20 6C23.4 6 26 8.6 26 12C26 15.4 23.4 18 20 18C16.6 18 14 15.4 14 12C14 8.6 16.6 6 20 6ZM20 34.4C15 34.4 10.6 31.8001 8 28C8 24 16 21.8 20 21.8C24 21.8 32 24 32 28C29.4 31.8 25 34.4 20 34.4Z"
                                     fill="#1B1B1B"/>

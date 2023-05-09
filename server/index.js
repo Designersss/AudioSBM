@@ -8,12 +8,15 @@ const fileUpload = require('express-fileupload')
 const router = require('./routes/index')
 const errorHandler = require('./middleware/ErrorHandlingMiddleware')
 const path = require('path')
+const bodyParser = require("body-parser");
 
 const app = express()
 
 app.use(cors())
 app.use(express.json())
 app.use(express.static(path.resolve(__dirname, 'static')))
+app.use(express.static(path.resolve(__dirname, 'staticUsers')))
+app.use(express.static(path.resolve(__dirname, 'staticServices')))
 app.use(express.static(path.resolve(__dirname, 'tracksFile')))
 app.use(fileUpload());
 app.use('/api', router)
