@@ -18,6 +18,7 @@ import {fetchServicesAll} from "../https/servicesApi";
 import sad from '../img/main/sad music 1.png'
 import hyperpop from '../img/main/hyperpop 4.png'
 import trap from '../img/main/trap 4.png'
+import img from "../img/12.jpg";
 
 const Main = observer (() => {
     const {music} = useContext(Context)
@@ -65,10 +66,13 @@ const Main = observer (() => {
                 </div>
                 <div className='grid grid-cols-5 gap-5'>
                     {services.servicesAll.map(service =>
-                        <Link to={PROD_ROUTER + '/' + service.artistId} key={service.id} className='relative py-1 px-1 uppercase rounded-xl text-center transition'>
-                            <img className='flex w-24 h-24 m-auto mt-2 rounded-lg rounded-b-none z-20' src={REACT_APP_API_URL + service.img} alt=""/>
-                            <p className='font-semibold text-[12px] mt-4 z-10'>{service.name}</p>
-                            <div className='absolute bg-gradient-to-r from-indigo-500 w-full h-full top-0 rounded-xl -z-10 opacity-30'></div>
+                        <Link to={PROD_ROUTER + '/' + service.artistId} key={service.id} className='relative py-1 px-1 uppercase rounded-xl text-center group'>
+                            <div key={service.id} className='relative py-1 px-1 uppercase rounded-xl text-center group'>
+                                <img className='flex w-24 h-24 m-auto mt-2 rounded-full z-20 object-cover' src={REACT_APP_API_URL + service.img} alt=""/>
+                                <p className='font-semibold text-[12px] mt-4 z-10'>{service.name}</p>
+                                <span className='text-[12px] mt-2'>{service.price} RUB</span>
+                                <div className='absolute bg-gradient-to-r from-indigo-500 w-full h-full top-0 rounded-xl -z-10 opacity-30'></div>
+                            </div>
                         </Link>
                     )}
                 </div>

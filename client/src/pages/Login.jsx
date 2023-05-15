@@ -30,7 +30,6 @@ const Login = observer (() => {
             user.setUser(data)
             user.setIsAuth(true)
             history(MAIN_ROUTER)
-            console.log(user.user + 'asd' + user.isAuth)
         } catch (e) {
             alert(e.response.data.message)
         }

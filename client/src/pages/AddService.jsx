@@ -13,13 +13,22 @@ const AddService = () => {
     const history = useNavigate()
     console.log(id)
     const addServices = e => {
-        const services = new FormData()
-        services.append('name', name)
-        services.append('artistId', id)
-        services.append('price', price)
-        services.append('img', img)
-        createServices(services).then(() => history(MAIN_ROUTER))
-        console.log(services)
+        try {
+            if (img == null) {
+                alert('Загрузите фото')
+            } else if (name === '') {
+                alert('Заполните поле "Название"')
+            } else {
+                const services = new FormData()
+                services.append('name', name)
+                services.append('artistId', id)
+                services.append('price', price)
+                services.append('img', img)
+                createServices(services).then(() => history(MAIN_ROUTER))
+            }
+        } catch (e) {
+            console.log(e)
+        }
     }
      return (
         <div className='container'>

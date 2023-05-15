@@ -7,7 +7,7 @@ import {
     GENRES_ROUTER, LOGIN_ROUTER,
     MAIN_ROUTER,
     MUSIC_ROUTER,
-    PROD_ROUTER, REGISTRATION_ROUTER
+    PROD_ROUTER, REDACT_BEATS, REGISTRATION_ROUTER
 } from "../utils/const";
 import Admin from "../pages/Admin";
 import Main from "../pages/Main";

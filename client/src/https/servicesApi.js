@@ -15,3 +15,8 @@ export const fetchOneServices = async (artistId) => {
     const {data} = await $host.get('api/services/' + artistId)
     return data
 }
+
+export const deletedServices = async (id) => {
+    const {data} = await $host.get('api/services/deleted/' + id)
+    return data
+}

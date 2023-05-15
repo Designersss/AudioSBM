@@ -22,27 +22,50 @@ const AddBeats = observer(() => {
     const [raa, setRaa] = useState(false)
     const fileUpImg = e => {
         setFileImg(e.target.files[0])
+        if (fileImg == null) {
+            return fileImg
+        }
+        console.log(fileImg)
     }
 
     const fileUpTrack = e => {
         setFileMp3(e.target.files[0])
+        if (fileMp3 == null) {
+            return fileMp3
+        }
+        console.log(fileMp3)
     }
 
     const addTrack = () => {
-        const music = new FormData()
-        music.append('name', nameTrack)
-        music.append('artistId', user.user.id)
-        music.append('img', fileImg)
-        music.append('listens', 0)
-        music.append('priceMp3', mp3)
-        music.append('priceWav', wav)
-        music.append('priceOut', trackOut)
-        music.append('pricePremium', premium)
-        music.append('priceLeasing', leasing)
-        music.append('genre', genre)
-        music.append('BPM', bpm)
-        music.append('trackMp3', fileMp3)
-        createMusic(music).then(() => history(MAIN_ROUTER))
+        try {
+            if (fileMp3 == null) {
+                alert('Загрузите трек')
+            }
+            else if (fileImg == null) {
+                alert('Загрузите фото')
+            } else if (nameTrack === '') {
+                alert('Заполните поле "Название"')
+            } else if (bpm === '') {
+                alert('Заполните поле "BPM"')
+            } else {
+                const music = new FormData()
+                music.append('name', nameTrack)
+                music.append('artistId', user.user.id)
+                music.append('img', fileImg)
+                music.append('listens', 0)
+                music.append('priceMp3', mp3)
+                music.append('priceWav', wav)
+                music.append('priceOut', trackOut)
+                music.append('pricePremium', premium)
+                music.append('priceLeasing', leasing)
+                music.append('genre', genre)
+                music.append('BPM', bpm)
+                music.append('trackMp3', fileMp3)
+                createMusic(music).then(() => history(MAIN_ROUTER))
+            }
+        } catch (e) {
+            console.log(e)
+        }
     }
 
 

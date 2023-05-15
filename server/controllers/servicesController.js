@@ -1,4 +1,4 @@
-const {Services} = require("../models/models");
+const {Services, Track} = require("../models/models");
 const uuid = require("uuid");
 const path = require("path");
 
@@ -20,6 +20,16 @@ class servicesController {
         const services = await Services.findAll({
             where: {artistId}
         })
+        return res.json(services)
+    }
+
+    async deletedServices(req, res) {
+        const {id} = req.params
+        const services = await Services.destroy(
+            {
+                where: {id}
+            }
+        )
         return res.json(services)
     }
 }

@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {fetchAllUser, fetchOneUser} from "../https/userApi";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
@@ -13,7 +13,7 @@ import {
     PROD_ROUTER,
     REACT_APP_API_URL
 } from "../utils/const";
-import {fetchOneServices, fetchServicesAll} from "../https/servicesApi";
+import {deletedServices, fetchOneServices, fetchServicesAll} from "../https/servicesApi";
 import {fetchMusic, fetchOneMusicGenre, fetchOneMusicId} from "../https/musicApi";
 import MusicUser from "../component/MusicUser";
 
@@ -21,13 +21,18 @@ const User = observer(() => {
     const {music} = useContext(Context)
     const {user} = useContext(Context)
     const {id} = useParams()
+    const history = useNavigate()
     const [userOne, setUserOne] = useState({})
     const [servicesUser, setServicesUser] = useState([])
     useEffect(() => {
         fetchOneUser(id).then(data => setUserOne(data))
         fetchOneServices(id).then(data => setServicesUser(data))
     }, [])
-    console.log(servicesUser)
+    const [idServices, setIdServices] = useState()
+
+    const delServices = (id) => {
+        deletedServices(id).then(() => history(0))
+    }
     if (userOne === null) {
         return (
             <div className='container'>
@@ -282,14 +287,22 @@ const User = observer(() => {
                 </div>
                 <div className='grid grid-cols-5 gap-8'>
                     {servicesUser.map(service =>
-                        <Link to={PROD_ROUTER + '/' + service.artistId} key={service.id}
-                              className='relative py-1 px-1 uppercase rounded-xl text-center transition'>
-                            <img className='flex w-24 m-auto mt-2 rounded-lg rounded-b-none z-20'
-                                 src={REACT_APP_API_URL + service.img} alt=""/>
+                        <div key={service.id} className='relative py-1 px-1 uppercase rounded-xl text-center group'>
+                            {user.user.id === userOne.id
+                            ?
+                                <div>
+                                    <button onClick={() => delServices(service.id)} className='absolute top-0 left-0 mt-12 ml-12 text-red-500 text-[18px] z-20 transition-[1s] opacity-0 group-hover:opacity-100'>Удалить</button>
+                                    <div className='absolute bg-[#000] w-full h-full top-0 rounded-xl z-10 opacity-0 transition-all transition-[1s] group-hover:opacity-50'></div>
+                                </div>
+                            :
+                                <div>
+                                </div>
+                            }
+
+                            <img className='flex w-24 h-24 m-auto mt-2 rounded-full z-20 object-cover' src={REACT_APP_API_URL + service.img} alt=""/>
                             <p className='font-semibold text-[12px] mt-4 z-10'>{service.name}</p>
-                            <div
-                                className='absolute bg-gradient-to-r from-indigo-500 w-full h-full top-0 rounded-xl -z-10 opacity-30'></div>
-                        </Link>
+                            <div className='absolute bg-gradient-to-r from-indigo-500 w-full h-full top-0 rounded-xl -z-10 opacity-30'></div>
+                        </div>
                     )}
                 </div>
             </div>

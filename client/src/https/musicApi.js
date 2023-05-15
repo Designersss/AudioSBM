@@ -27,6 +27,6 @@ export const fetchOneMusicId = async (artistId) => {
 }
 
 export const deletedTrack = async (id) => {
-    const {data} = await $host.get('api/track/del/' + id)
+    const {data} = await $host.get('api/track/deleted/' + id)
     return data
 }
