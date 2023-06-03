@@ -118,7 +118,7 @@ const Login = observer (() => {
                         ?
                         <button className='bg-[#0057BA] py-1 rounded-lg w-full' onClick={click}>Продолжить</button>
                         :
-                        <button className='bg-[#0057BA] py-1 rounded-lg w-full' onClick={click}>Рег</button>
+                        <button className='bg-[#0057BA] py-1 rounded-lg w-full' onClick={click}>Продолжить</button>
                     }
                     <hr className='my-4'/>
                     <div>

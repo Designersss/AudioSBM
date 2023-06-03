@@ -7,7 +7,7 @@ import {
     GENRES_ROUTER, LOGIN_ROUTER,
     MAIN_ROUTER,
     MUSIC_ROUTER,
-    PROD_ROUTER, REDACT_BEATS, REGISTRATION_ROUTER
+    PROD_ROUTER, REDACT_BEATS, REGISTRATION_ROUTER, SERVICES_ROUTER
 } from "../utils/const";
 import Admin from "../pages/Admin";
 import Main from "../pages/Main";
@@ -21,6 +21,7 @@ import User from "../pages/User";
 import AddBeats from "../pages/AddBeats";
 import AddService from "../pages/AddService";
 import AddAlbum from "../pages/AddAlbum";
+import ServicesAll from "../pages/ServicesAll";
 
 export const publicRoutes = [
     {
@@ -45,6 +46,10 @@ export const authRoutes = [
     {
         path: MAIN_ROUTER,
         Component: Main
+    },
+    {
+        path: SERVICES_ROUTER,
+        Component: ServicesAll
     },
     {
         path: ALL_MUSIC_ROUTER,

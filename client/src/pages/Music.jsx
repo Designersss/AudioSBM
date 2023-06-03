@@ -37,7 +37,7 @@ const Music = observer(() => {
     }
     return (
         <div className='container'>
-            <div className='flex mt-10'>
+            <div className='flex mt-3'>
                 <div className='block w-72'>
                     <div>
                         <p className='flex text-center justify-center text-[#9B9B9B] text-lg'>{musicOne.name}</p>
@@ -134,7 +134,7 @@ const Music = observer(() => {
                     </div>
                 </div>
             </div>
-            <div className='mt-16'>
+            <div className='mt-16 pb-20'>
                 <div className='flex items-center mt-8 mb-3'>
                     <span className='text-xl'>Рекомендации</span>
                     <div className='bg-[#1B1B1B] w-full h-0.5 ml-5'></div>

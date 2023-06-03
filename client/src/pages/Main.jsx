@@ -65,7 +65,7 @@ const Main = observer (() => {
                     </svg>
                 </div>
                 <div className='grid grid-cols-5 gap-5'>
-                    {services.servicesAll.map(service =>
+                    {services.servicesAll.slice(0, 5).map(service =>
                         <Link to={PROD_ROUTER + '/' + service.artistId} key={service.id} className='relative py-1 px-1 uppercase rounded-xl text-center group'>
                             <div key={service.id} className='relative py-1 px-1 uppercase rounded-xl text-center group'>
                                 <img className='flex w-24 h-24 m-auto mt-2 rounded-full z-20 object-cover' src={REACT_APP_API_URL + service.img} alt=""/>
@@ -85,7 +85,7 @@ const Main = observer (() => {
                     </svg>
                 </div>
                 <div className='grid grid-cols-6 gap-5'>
-                    {user.usersAll.slice(0, 5).map(user =>
+                    {user.usersAll.slice(0, 6).map(user =>
                         <Link to={PROD_ROUTER + '/' + user.id} key={user.id}
                               className='w-full py-4 justify-center transition bg-[#121212] rounded-lg'>
                             <img className='flex w-20 h-20 rounded-full m-auto' src={REACT_APP_API_URL + user.img} alt=""/>

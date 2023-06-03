@@ -4,7 +4,7 @@ const Comments = ({text}) => {
     const [like, setLike] = useState(0)
     return (
         <div className='block text-[#000] mt-10'>
-            <span>NameUsers</span>
+            <span>UserName</span>
             <p className='mt-2'>{text}</p>
             <div className='flex items-center mt-2'>
                 <div className='flex items-center'>
