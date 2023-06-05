@@ -14,4 +14,4 @@ export const ADD_ALBUM = '/panel/addAlbum'
 export const ADD_SERVICE = '/panel/addService'
 export const ERROR = '*'
 
-export const REACT_APP_API_URL = 'http://localhost:5050/'
+export const REACT_APP_API_URL = 'https://restapi-server.onrender.com/'
