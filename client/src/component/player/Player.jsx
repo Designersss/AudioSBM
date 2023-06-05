@@ -15,7 +15,7 @@ const Player = observer (() => {
     const [current, setCurrent] = useState(0)
     const playId = document.getElementsByClassName("audio-play")[0]
     useEffect(() => {
-        fetchOneMusic(2).then(data => playerMusic.setPlayerMusic(data))
+        fetchOneMusic(6).then(data => playerMusic.setPlayerMusic(data))
     }, [])
     const playSound = () => {
         if (isPlaying) {

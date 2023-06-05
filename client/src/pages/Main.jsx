@@ -10,7 +10,7 @@ import {
     MAIN_ROUTER,
     MUSIC_ROUTER,
     PROD_ROUTER,
-    REACT_APP_API_URL
+    REACT_APP_API_URL, SERVICES_ROUTER
 } from "../utils/const";
 import MusicOne from "../component/MusicOne";
 import {fetchAllUser} from "../https/userApi";
@@ -59,7 +59,7 @@ const Main = observer (() => {
             </div>
             <div className='mt-20'>
                 <div className='flex items-center mt-8 mb-3 items-center'>
-                    <Link to={ALL_MUSIC_ROUTER} className='text-xl transition-[.3s] hover:text-[22px]'>Услуги</Link>
+                    <Link to={SERVICES_ROUTER} className='text-xl transition-[.3s] hover:text-[22px]'>Услуги</Link>
                     <svg className='ml-3 ' width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1 1L6.5 7L12 1" stroke="#33333A"/>
                     </svg>

@@ -285,7 +285,7 @@ const User = observer(() => {
                         <path d="M1 1L6.5 7L12 1" stroke="#33333A"/>
                     </svg>
                 </div>
-                <div className='grid grid-cols-5 gap-8'>
+                <div className='grid grid-cols-5 gap-8 pb-52'>
                     {servicesUser.map(service =>
                         <div key={service.id} className='relative py-1 px-1 uppercase rounded-xl text-center group'>
                             {user.user.id === userOne.id
